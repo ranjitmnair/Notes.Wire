@@ -15,7 +15,8 @@
     <nav class="navbar navbar-light bg-dark">
         <a class="navbar-brand text-warning">Notes.Wire | Organize your Day</a>
         <form class="form-inline">
-            <input class="form-control mr-sm-2" id="searchtxt" type="search" placeholder="Find Your Notes" aria-label="Search">
+            <input class="form-control mr-sm-2" id="searchtxt" type="search" placeholder="Find Your Notes"
+                aria-label="Search">
             <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
         </form>
     </nav>
@@ -27,8 +28,15 @@
         <!-- Notes -->
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Add a new note</h5>
+                <div class="form-group">
+                    <h5 class="card-title">Add title</h5>
+                    
+                    <input type="text" class="form-control" id="addTitle"
+                        placeholder="Enter title">
+                    
+                </div>
                 <div class="mb-3">
+                    <h5 class="card-title">Add Note</h5>
                     <textarea class="form-control" id="adtext" placeholder="Content" required></textarea>
                 </div>
                 <button class="btn btn-primary" id="adbtn">Add Note</button>

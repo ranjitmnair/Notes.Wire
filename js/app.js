@@ -8,26 +8,25 @@ let addBtn = document.getElementById('adbtn');
 addBtn.addEventListener("click", function (e) {
     // e is event object
     let addTxt = document.getElementById("adtext");
+    let addTitle = document.getElementById("addTitle");
     notes = localStorage.getItem("notes");
     if (notes == null) {
         notesObj = [];//storing notes in array
     }
+    
     else {
         notesObj = JSON.parse(notes);
     }
-
-    if (addTxt.value != "") {
-        notesObj.unshift(addTxt.value);
-        localStorage.setItem("notes", JSON.stringify(notesObj));
-        adtext.value = "";
-        console.log(notesObj);
-        showNotes();
+    let myObj={
+        title: addTitle.value,
+        text:addTxt.value
     }
 
-     if (addTxt.value !="") {
-        notesObj.unshift(addTxt.value);
+    if (addTxt.value != "") {
+        notesObj.unshift(myObj);
         localStorage.setItem("notes", JSON.stringify(notesObj));
-        adtext.value = "";
+        adtext.value = addTitle.value= "";
+
         console.log(notesObj);
         showNotes();
     }
@@ -49,8 +48,8 @@ function showNotes() {
 
         <div class="noteCard my-3 mx-3 card bg-warning" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Note ${index + 1}</h5>
-                <p class="card-text">${element}</p>
+                <h5 class="card-title">${element.title}</h5>
+                <p class="card-text">${element.text}</p>
                 <button id="${index}" onclick="deleteNote(this.id)"class="btn btn-primary">Delete Note</button>
             </div>
         </div>        
@@ -95,7 +94,8 @@ search.addEventListener("input", function () {
     let noteCards = document.getElementsByClassName('noteCard');
     Array.from(noteCards).forEach(function (element) {
         let cardTxt = element.getElementsByTagName("p")[0].innerText;
-        if (cardTxt.toLowerCase().includes(inputVal)) {
+        let cardTitle=element.getElementsByClassName("card-title")[0].innerText;
+        if (cardTxt.toLowerCase().includes(inputVal)||cardTitle.toLowerCase().includes(inputVal)) {
             element.style.display = "block";
         }
         else {
